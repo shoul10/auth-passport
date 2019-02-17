@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  form(method='POST', action='/users/register')
+    #form-group
+      label
+      input.form-control(name='name', placeholder='Name', data-validation='length', data-validation-length='min2', type='text', value= newUser.name)
+    #form-group
+      label
+      input.form-control(name='email', placeholder='Email', data-validation="email", type='text', value= newUser.email)
+    #form-group
+      label
+      input.form-control(name='username', placeholder='Username', data-validation='length alphanumeric', data-validation-length='3-12', data-validation-error-msg='The user name has to be an alphanumeric value between 3-12 characters', type='text', value= newUser.username)
+    #form-group
+      label
+      input.form-control(name='password_confirmation', placeholder='Password', data-validation="strength", data-validation-strength="2", type='password', value= newUser.password)
+    #form-group
+      label
+      input.form-control(name='password', placeholder='Confirm Password', data-validation="confirmation", type='password', value= newUser.password)
+    br
+    input.btn.btn-primary(type='submit', value='Submit')  
+  script.
+    $.validate({modules : 'security'});
